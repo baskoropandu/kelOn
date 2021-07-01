@@ -11,7 +11,7 @@ class Users{
                     }
                 },
                 include:{
-                    model: Class
+                    model: 'Class'
                 }
             })
             .then(result=> {
@@ -28,7 +28,7 @@ class Users{
                 }
             },
             include:{
-                model: Class,
+                model: 'Class',
                 as: 'classes'
             }
         })
