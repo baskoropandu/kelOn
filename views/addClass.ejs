@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class - Add</title>
+</head>
+<body>
+    <ul>
+        <li style="display: inline;"><a href="/classes">Class</a></li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"> <a href="/users/instructors">Instructor</a></li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"><a href="/users/students">Student</a> </li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"><a href="/logout">Logout</a> </li>
+    </ul>
+    <hr>    
+    <h1>Add a Class</h1>
+    <form action="/classes/add" method="post">
+        <label>Subject : </label><br>
+        <input type="text" name="name_class"><br><br>
+        <label>Quota : </label><br>
+        <input type="number" name="quota"><br><br>
+        <label>Level : </label><br>
+        <input type="number" name="level"><br><br>
+        <label>Instructor :</label>
+        <select name="InstructorId">
+            <option></option>
+            <% listInstructor.forEach(el => { %>
+                <option value="<%= el.id %>"> <%= el.name %>  </option>                
+            <% }); %> 
+        </select><br><br>  
+        <button type="submit">Add Class</button> 
+    </form>
+</body>
+</html>

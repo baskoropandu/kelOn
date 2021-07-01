@@ -1,0 +1,33 @@
+{
+  "name": "kel-on",
+  "version": "1.0.0",
+  "description": "1. Association Many to Many (submit schema ke buddy-PP) ------ **DONE** 2. CRUD ( CREATE, READ, UPDATE, DELETE ) 3. Static Method (Model) 4. Instance Method (Model) 5. Helper  6. Hooks 7. MVP (explore) 8. Middleware  * 9. Session * 10. Deploy pada Heroku (explore)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baskoropandu/kel-on.git"
+  },
+  "keywords": [],
+  "author": "Pandu & Rizal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baskoropandu/kel-on/issues"
+  },
+  "homepage": "https://github.com/baskoropandu/kel-on#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "heroku": "^7.56.0",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9",
+    "sequelize-cli": "^6.2.0"
+  }
+}
