@@ -5,6 +5,9 @@ const session = require('express-session');
 const app = express()
 const port = process.env.PORT || 3000
 
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, {})
+
 app.set('view engine', 'ejs')
 app.use(session({
   secret: 'keLon - kelas onlen',
@@ -12,24 +15,36 @@ app.use(session({
   saveUninitialized: true
 }))
 
-const myLogger = (req, res, next) => {
-  if (req.session.isLogin === true) {
-    next()
-  }
-  else {
-    let err = ['anda harus login terlebih dahulu']
-    res.redirect(`/login?err=${err}`)
-  }
-}
 
 app.use(express.urlencoded({extended:true}))
 app.use('/', routes)
 
+let countUserOnline = 1
+io.on('connection', socket => {
+    socket.on('join', param => {
+        console.log('user join')
+        countUserOnline++;
+        io.emit('countUserOnline', countUserOnline)
+    })
+    socket.on('message', param => {
+        io.emit('message', param)
+    })
+    socket.on('disconnect', param => {
+        console.log('user keluar')
+        countUserOnline--;
+        io.emit('countUserOnline', countUserOnline)
 
-
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
+    })
 })
+
+app.use('/', routes)
+
+
+server.listen(port)
+
+// app.listen(port, () => {
+//     console.log(`http://localhost:${port}`);
+// })
 
 
 /*
