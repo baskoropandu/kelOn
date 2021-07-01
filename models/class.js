@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    description(){
+      return `ini adalah kelas ${this.name_class} yang memiliki level minimum ${this.level}. dengan sisa kursi kosong sejumlah ${this.quota}`
+    }
+
     static associate(models) {
       // define association here
       Class.belongsTo(models.User, { foreignKey: 'InstructorId', as: 'owner'})

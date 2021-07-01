@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://ik.imagekit.io/ztg2jcaeb0e/Untitled_YFdJN0T5YFRt.png" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Class - Add</title>
 </head>
@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <img src="https://lh3.google.com/u/0/d/10PLiPlHVtDlO6OzY2izI5_f0qaLBwmTx=w1364-h913-iv1" alt="" height="40" class="d-inline-block align-text-top">
+                    <img src="https://ik.imagekit.io/ztg2jcaeb0e/Untitled_YFdJN0T5YFRt.png" alt="" height="40" class="d-inline-block align-text-top">
                   </a>
                 <!-- <img src="https://lh3.google.com/u/0/d/10PLiPlHVtDlO6OzY2izI5_f0qaLBwmTx=w1364-h913-iv1" height="50px"> -->
               <!-- <a class="navbar-brand" href="#">Navbar</a> -->
@@ -27,9 +27,8 @@
                   <a class="nav-link active" aria-current="page" href="/classes">Classes</a>
                   <a class="nav-link" href="/users/instructors">Instructors</a>
                   <a class="nav-link " href="/users/students">Students</a>
-
-                  <!-- <a class="nav-link" href="#">Logout</a> -->
-                  <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+                  <a class="nav-link " href="/classes/myClasses">My Classes</a>
+                  <a class="nav-link " href="/logout">Log Out</a>
                 </div>
               </div>
             </div>
@@ -47,7 +46,38 @@
         <li style="display: inline;"><a href="/logout">Logout</a> </li>
     </ul> -->
     <hr>    
-    <h1>Add a Class</h1>
+    <h1 style="margin-left: 5%;">Add a Class</h1>
+
+
+    <form class="row g-3" action="/classes/add" method="POST" style="margin-left: 5%;margin-right: 50%;">
+        <div class="col-md-6">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject" name="name_class">
+        </div>
+        <div class="col-md-6">
+          <label for="quota" class="form-label">Quota</label>
+          <input type="number" class="form-control" id="quota" name="quota">
+        </div>
+        <div class="col-12">
+          <label for="level" class="form-label">Level</label>
+          <input type="number" class="form-control" id="level" name="level">
+        </div>
+        <div class="col-md-4">
+          <label for="instructor" class="form-label">Instructor</label>
+          <select id="instructor" class="form-select" name="InstructorId">
+            <option selected>Choose...</option>
+            <% listInstructor.forEach(el => { %>
+                <option value="<%= el.id %>"> <%= el.name %>  </option>                
+            <% }); %> 
+          </select>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add Class</button>
+        </div>
+      </form>
+
+
+<!-- 
     <form action="/classes/add" method="post">
         <label>Subject : </label><br>
         <input type="text" name="name_class"><br><br>
@@ -63,6 +93,6 @@
             <% }); %> 
         </select><br><br>  
         <button type="submit">Add Class</button> 
-    </form>
+    </form> -->
 </body>
 </html>

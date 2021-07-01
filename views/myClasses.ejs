@@ -57,8 +57,7 @@
               
               <h6 class="card-title">level: <%=el.level%></h6>
 
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text">Sisa quota: <%=el.quota%></p>
+              <p class="card-text"><%=el.description()%></p>
               
               <a href="/classes/<%=el.id%>/delete" class="btn btn-danger">drop</a>
               <a href="/chat" class="btn btn-primary disable">JoinChat</a>

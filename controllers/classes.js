@@ -4,6 +4,7 @@ const starMaker = require('../helpers/starMaker')
 class ClassController {
     static getAll(req, res) {
         let err = req.query.err
+        let is_instructor = req.session.is_instructor
 
         Class
             .findAll({
@@ -19,7 +20,7 @@ class ClassController {
                 }
             })
             .then(listClass => {
-                res.render('listClass', {listClass, err, starMaker})
+                res.render('listClass', {listClass, err, starMaker,is_instructor})
             })
             .catch(err=> console.log(err))
     }

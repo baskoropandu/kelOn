@@ -47,7 +47,10 @@
     <hr> -->
     <h1 style="margin-left: 5%; margin-right: 5%;">List Class</h1>
     <hr>
-    <a href="/classes/add" class="btn btn-success" style="margin-bottom: 25px; margin-left: 5%;">Add Class</a>
+    <%if(is_instructor === true){%>
+        <a href="/classes/add" class="btn btn-success" style="margin-bottom: 25px; margin-left: 5%;">Add Class</a>
+        <a href="/chat" class="btn btn-primary" style="margin-bottom: 25px; margin-left: 10px;">Join Chat</a>
+    <%}%>
 
     <div class="row row-cols-sm-6" style="margin-left: 5%; margin-right: 5%;">
         <% listClass.forEach((el , i) => { %> 
@@ -58,8 +61,7 @@
               <h6 class="card-title">by: <%=el.owner.name%></h6>
               <h6 class="card-title">level: <%=starMaker(el.level)%></h6>
 
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text">Sisa quota: <%=el.quota%></p>
+              <p class="card-text"><%=el.description()%></p>
               
               <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary">enroll</a>
               
