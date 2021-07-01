@@ -9,58 +9,40 @@
     <title>Class - List</title>
 </head>
 <body>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="https://lh3.google.com/u/0/d/10PLiPlHVtDlO6OzY2izI5_f0qaLBwmTx=w1364-h913-iv1" alt="" height="40" class="d-inline-block align-text-top">
-                  </a>
-                <!-- <img src="https://lh3.google.com/u/0/d/10PLiPlHVtDlO6OzY2izI5_f0qaLBwmTx=w1364-h913-iv1" height="50px"> -->
-              <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link active" aria-current="page" href="/classes">Classes</a>
-                  <a class="nav-link" href="/users/instructors">Instructors</a>
-                  <a class="nav-link " href="/users/students">Students</a>
+    <ul>
+        <li style="display: inline;"><a href="/classes">Class</a></li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"> <a href="/users/instructors">Instructor</a></li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"><a href="/users/students">Student</a> </li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"><a href="/logout">Logout</a> </li>
+    </ul>
+    <hr>
+    <h1>List Class</h1>
+    <hr>
+    <a href="/classes/add" class="btn btn-success">Add Class</a>
 
-                  <!-- <a class="nav-link" href="#">Logout</a> -->
-                  <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
-                </div>
-              </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% listClass.forEach((el , i) => { %> 
+        <div class="card h-100" >
+            <img src="https://lh3.google.com/u/0/d/1N0QHReK2ed7NPZKVDWybrKsOds1npA7Q=w1364-h663-iv1" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%=el.name_class%></h5>
+              <h6 class="card-title">by: <%=el.owner.name%></h6>
+              <h6 class="card-title">level: <%=starMaker(el.level)%></h6>
+
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">Sisa quota: <%=el.quota%></p>
+              
+              <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary">enroll</a>
+              <a href="/classes/<%=el.id%>/edit" class="btn btn-primary">edit</a>
+              
             </div>
-          </nav>
-    </div>
-
-    <div style="margin-left: 5%;margin-right: 5%;">
-        <h1>List Class</h1>
-
-        <a href="/classes/add" class="btn btn-success" style="margin-bottom: 10px;">Add Class</a>
-    
-        <div class="row row-cols-3">
-            <% listClass.forEach((el , i) => { %> 
-            <div class="card" > 
-                <img src="https://lh3.google.com/u/0/d/1N0QHReK2ed7NPZKVDWybrKsOds1npA7Q=w1364-h663-iv1" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title"><%=el.name_class%></h5>
-                  <h6 class="card-title">by: <%=el.owner.name%></h6>
-                  <h6 class="card-title">level: <%=starMaker(el.level)%></h6>
-    
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">Sisa quota: <%=el.quota%></p>
-                  
-                  <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary">enroll</a>
-                  <a href="/classes/<%=el.id%>/edit" class="btn btn-primary">edit</a>
-                  
-                </div>
-            </div>
-            <%})%>
-    
         </div>
-    </div>
+        <%})%>
 
+    </div>
 
     <% if (err) { %>
      <script>        

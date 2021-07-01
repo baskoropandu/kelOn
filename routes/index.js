@@ -13,6 +13,7 @@ router.post('/register', Controller.postregister)
 router.use(myLogger)
 
 router.get('/logout', Controller.logout)
+router.get('/chat', Controller.chatting)
 
 router.use('/classes', classes)
 router.use('/users', users)
