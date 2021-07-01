@@ -38,6 +38,7 @@ class Controller {
                     res.redirect(`/login?err=${error}`)
                 }
             })
+            .catch(err => res.send(err))
         // res.redirect('/classes')
     }
 
