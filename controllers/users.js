@@ -19,6 +19,10 @@ class Users{
                 // res.send(result)
                 res.render('students',{ students: result})
             })
+            .catch(err=>{
+                console.log(err);
+                res.send(err)
+            })
     }
     static getInstructors(req,res){
         User.findAll({
@@ -34,6 +38,10 @@ class Users{
         })
         .then(result=> {
             res.render('instructors',{ instructors: result})
+        })
+        .catch(err=>{
+            console.log(err);
+            res.send(err)
         })
     }
 }
