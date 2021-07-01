@@ -1,4 +1,6 @@
 'use strict';
+const {Op} = require('sequelize')
+
 const {
   Model
 } = require('sequelize');
@@ -25,6 +27,36 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Class, { foreignKey: 'InstructorId', as:'classes' })
       // User.hasMany(models.UserClass,{foreignKey: 'UserId'})
       User.belongsToMany(models.Class, {through: models.UserClass, foreignKey: 'UserId'})
+    }
+
+    static getStudent(models) {
+      return User
+                .findAll({
+                        where:{
+                            is_instructor: {
+                                [Op.eq]: 'false'
+                            }
+                        },
+                        include:{
+                            model: models
+                        }
+                    })
+
+    }
+
+    static getInstructor(models) {
+      return User
+                .findAll({
+                  where:{
+                      is_instructor: {
+                          [Op.eq]: 'true'
+                      }
+                  },
+                  include:{
+                      model: models,
+                      as: 'classes'
+                  }
+                })
     }
   };
   User.init({

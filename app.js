@@ -25,7 +25,7 @@ app.use(session({
 app.use(express.urlencoded({extended:true}))
 app.use('/', routes)
 
-let countUserOnline = 1
+let countUserOnline = 0
 io.on('connection', socket => {
     socket.on('join', param => {
         console.log('user join')
