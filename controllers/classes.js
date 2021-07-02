@@ -1,6 +1,7 @@
 const { Class, User, UserClass } = require('../models/index');
 const { Op } = require("sequelize");
 const starMaker = require('../helpers/starMaker')
+
 class ClassController {
     static getAll(req, res) {
         let err = req.query.err
@@ -75,24 +76,32 @@ class ClassController {
         let ClassId = +req.params.ClassId
         let UserId = req.session.UserId
         let is_instructor = req.session.is_instructor
+        let UserLevel = req.session.level
+        let theClass
 
         if (!is_instructor) {
-            UserClass
-                .create({
-                    ClassId,
-                    UserId
+
+            Class
+                .findByPk(ClassId)
+                .then(theClass=>{
+                    if(theClass.level > UserLevel){
+                        let error = ['Level anda tidak cukup']
+                        res.redirect(`/classes?err=${error}`)
+                    }else{
+                        let quota = +theClass.quota - 1
+                        return Class.update({
+                            quota
+                        }, {
+                            where: {
+                                id: ClassId
+                            }
+                        })
+                    }
                 })
-                .then(result => {
-                    return Class.findByPk(ClassId)
-                })
-                .then(theClass => {
-                    let quota = +theClass.quota - 1
-                    return Class.update({
-                        quota
-                    }, {
-                        where: {
-                            id: ClassId
-                        }
+                .then(result =>{
+                    return UserClass.create({
+                        ClassId,
+                        UserId
                     })
                 })
                 .then(result => {
@@ -106,8 +115,6 @@ class ClassController {
             let error = ['Anda bukan student']
             res.redirect(`/classes?err=${error}`)
         }
-        // console.log(UserId, ClassId, is_instructor);
-
     }
 
     static getMyClasses(req,res){

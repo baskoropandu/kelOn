@@ -2,7 +2,6 @@ const {User} = require('../models/index');
 
 class Controller {
     static home(req, res) {
-        // console.log(req.session);
         res.render('home')
     }
 
@@ -14,6 +13,7 @@ class Controller {
     static postLogin(req, res) {
         let email = req.body.email
         let password = req.body.password
+
 
         User.findAll({
                 where: { email }
@@ -30,8 +30,8 @@ class Controller {
                     req.session.name = result[0].name
                     req.session.UserId = result[0].id
                     req.session[req.session.id] = result[0].name
+                    req.session.level = result[0].level
 
-                    // console.log(req.session);
                     res.redirect('/classes')
                 } else {
                     let error = ['Pasword Wrong']
@@ -39,7 +39,6 @@ class Controller {
                     res.redirect(`/login?err=${error}`)
                 }
             })
-        // res.redirect('/classes')
     }
 
     static register(req, res) {
