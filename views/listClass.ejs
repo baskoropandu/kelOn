@@ -63,8 +63,11 @@
 
               <p class="card-text"><%=el.description()%></p>
               
+              <%if(+el.quota > 0){%>
               <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary">enroll</a>
-              
+              <%}else{%>
+              <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary disabled">Class Full</a>
+              <%}%>
             </div>
         </div>
         <%})%>
